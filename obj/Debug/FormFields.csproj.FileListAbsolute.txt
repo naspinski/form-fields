@@ -1,0 +1,6 @@
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\bin\Debug\formFields.dll
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\bin\Debug\formFields.pdb
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\bin\Debug\AjaxControlToolkit.dll
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\obj\Debug\formFields.dll
+C:\Documents and Settings\stan.naspinski\My Documents\Visual Studio 2008\Projects\formFields\formFields\obj\Debug\formFields.pdb

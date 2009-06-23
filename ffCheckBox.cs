@@ -13,6 +13,7 @@ namespace Naspinski.Controls.FormFields
     public class checkBox : FormField
     {
         public CheckBox CheckBox;
+        //asd
 
         protected void Page_Load(object sender, EventArgs e)
         {

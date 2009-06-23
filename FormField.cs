@@ -47,7 +47,7 @@ namespace Naspinski.Controls.FormFields
                     ErrorMessage = RequiredErrorMessage
                 };
             }
-            else _Title.Text += "*";
+            else _Title.Text += (validate ? "*" : string.Empty);
 
             Field.Controls.Add(new LiteralControl("<h3><label for='" + c.ClientID + "'>"));
             if (validate && Required) Field.Controls.Add(RequiredValidator);

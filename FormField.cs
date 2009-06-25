@@ -9,20 +9,21 @@ namespace Naspinski.Controls.FormFields
     public partial class FormField : UserControl
     {
         public Panel Field;
-        public Literal _Title;
+        public Label Header;
 
-        [Bindable(false), Category("Appearance"), Description("Form Field Title (displayed in an <h3> tag)"), DefaultValue(""), Localizable(true)]
-        public string Title;
-        [Bindable(false), Category("Appearance"), Description("CSS Class used for the validator"), DefaultValue("validate"), Localizable(true)]
-        public string ValidatorCssClass = "validate";
-        [Bindable(false), Category("Appearance"), Description("Css Class for the <div> wrapping the control"), DefaultValue("formField"), Localizable(true)]
-        public string FieldCssClass = "formField";
-        [Bindable(false), Category("Appearance"), Description("Css Class used for the input control"), DefaultValue(""), Localizable(true)]
-        public string FormElementCssClass;
-        [Bindable(false), Category("Appearance"), Description("Defines whether or not to use the RequiredFieldvalidator"), DefaultValue("false"), Localizable(true)]
-        public bool Required = false;
-        [Bindable(false), Category("Appearance"), Description("ErrorMessage for the RequiredFieldValidator"), DefaultValue("required"), Localizable(true)]
-        public string RequiredErrorMessage = "required";
+        [Category("Appearance"), Description("Form Field Title (displayed in an <h3> tag)"), DefaultValue("")]
+        public string Title { get; set; }
+        [Category("Appearance"), Description("CSS Class used for the validator"), DefaultValue("validate")]
+        public string ValidatorCssClass { get; set; }
+        [Category("Appearance"), Description("Css Class for the <div> wrapping the control"), DefaultValue("formField")]
+        public string FieldCssClass { get; set; }
+        [Category("Appearance"), Description("Css Class used for the input control"), DefaultValue("")]
+        public string FormElementCssClass { get; set; }
+        [Category("Appearance"), Description("Defines whether or not to use the RequiredFieldvalidator"), DefaultValue("false")]
+        public bool Required { get; set; }
+        [Category("Appearance"), Description("ErrorMessage for the RequiredFieldValidator"), DefaultValue("required")]
+        public string RequiredErrorMessage { get; set; }
+        public string InitialValue { get; set; }
 
         public RequiredFieldValidator RequiredValidator;
         public PlaceHolder ValidationPlaceHolder;
@@ -31,11 +32,15 @@ namespace Naspinski.Controls.FormFields
 
         public void FieldInit(Control c)
         {
+            SetDefaults();
             Type test = c.GetType();
             bool validate = !TYPES_THAT_DONT_VALIDATE.Contains(test);
             Field = new Panel() { CssClass = FieldCssClass };
-            _Title = new Literal();
-            _Title.Text = Title;
+            Header = new Label()
+            {
+                AssociatedControlID = c.ID,
+                Text = Title
+            };
             ValidationPlaceHolder = new PlaceHolder();
             if (validate && Required)
             {
@@ -44,18 +49,27 @@ namespace Naspinski.Controls.FormFields
                     CssClass = ValidatorCssClass,
                     ControlToValidate = c.ID,
                     Display = ValidatorDisplay.Dynamic,
-                    ErrorMessage = RequiredErrorMessage
+                    ErrorMessage = RequiredErrorMessage,
+                    InitialValue = InitialValue
                 };
             }
-            else _Title.Text += (validate ? "*" : string.Empty);
+            else Header.Text += (validate ? (Header.Text.Length > 0 ? "*" : string.Empty) : string.Empty);
 
-            Field.Controls.Add(new LiteralControl("<h3><label for='" + c.ClientID + "'>"));
+            Field.Controls.Add(new LiteralControl("<h3>"));
             if (validate && Required) Field.Controls.Add(RequiredValidator);
             Field.Controls.Add(ValidationPlaceHolder);
-            if (!string.IsNullOrEmpty(Title)) Field.Controls.Add(_Title);
+            if (!string.IsNullOrEmpty(Title)) Field.Controls.Add(Header);
             Field.Controls.Add(new LiteralControl("</label></h3>"));
             Field.Controls.Add(c);
             this.Controls.Add(Field);
+        }
+
+        private void SetDefaults()
+        {
+            if (string.IsNullOrEmpty(InitialValue)) InitialValue = InitialValue = Settings.InitialValue;
+            if (string.IsNullOrEmpty(RequiredErrorMessage)) RequiredErrorMessage = Settings.RequiredErrorMessage;
+            if (string.IsNullOrEmpty(FieldCssClass)) FieldCssClass = Settings.FieldCssClass;
+            if (string.IsNullOrEmpty(ValidatorCssClass)) ValidatorCssClass = Settings.ValidatorCssClass;
         }
     }
 }

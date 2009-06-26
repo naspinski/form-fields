@@ -1,8 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.ComponentModel;
 
 namespace Naspinski.Controls.FormFields
 {
@@ -29,12 +29,13 @@ namespace Naspinski.Controls.FormFields
         public PlaceHolder ValidationPlaceHolder;
 
         private Type[] TYPES_THAT_DONT_VALIDATE = new Type[] { typeof(CheckBox), typeof(CheckBoxList), typeof(RadioButton), typeof(RadioButtonList) };
+        private Type[] TYPES_THAT_DONT_LIKE_INITIAL_VALUE = new Type[] { typeof(ListBox) };
 
         public void FieldInit(Control c)
         {
             SetDefaults();
-            Type test = c.GetType();
-            bool validate = !TYPES_THAT_DONT_VALIDATE.Contains(test);
+            Type type_of_c = c.GetType();
+            bool validate = !TYPES_THAT_DONT_VALIDATE.Contains(type_of_c);
             Field = new Panel() { CssClass = FieldCssClass };
             Header = new Label()
             {
@@ -52,14 +53,17 @@ namespace Naspinski.Controls.FormFields
                     ErrorMessage = RequiredErrorMessage,
                     InitialValue = InitialValue
                 };
+                if (TYPES_THAT_DONT_LIKE_INITIAL_VALUE.Contains(type_of_c)) RequiredValidator.InitialValue = null;
             }
             else Header.Text += (validate ? (Header.Text.Length > 0 ? "*" : string.Empty) : string.Empty);
 
+
             Field.Controls.Add(new LiteralControl("<h3>"));
-            if (validate && Required) Field.Controls.Add(RequiredValidator);
+            if (validate && Required)
+                Field.Controls.Add(RequiredValidator);
             Field.Controls.Add(ValidationPlaceHolder);
             if (!string.IsNullOrEmpty(Title)) Field.Controls.Add(Header);
-            Field.Controls.Add(new LiteralControl("</label></h3>"));
+            Field.Controls.Add(new LiteralControl("</h3>"));
             Field.Controls.Add(c);
             this.Controls.Add(Field);
         }

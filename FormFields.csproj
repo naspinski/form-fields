@@ -51,14 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFormField.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="ffCheckBox.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ffCheckBoxList.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ffDropDownList.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ffListBox.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ffRadioButtonList.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ffTextBox.cs">

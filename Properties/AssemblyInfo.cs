@@ -7,12 +7,12 @@ using System.Web.UI;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: TagPrefix("Naspinski.Controls.FormFields", "ff")]
-[assembly: AssemblyTitle("FormFields")]
+[assembly: TagPrefix("Naspinski.Controls.FormFields", "FormFields")]
+[assembly: AssemblyTitle("Naspinski.Controls.FormFields")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Naspinski")]
-[assembly: AssemblyProduct("FormFields")]
+[assembly: AssemblyProduct("Naspinski.Controls.FormFields")]
 [assembly: AssemblyCopyright("Copyright © Stan Naspinski 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

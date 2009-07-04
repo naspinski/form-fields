@@ -4,9 +4,9 @@ namespace Naspinski.Controls.FormFields
 {
     public static class Extensions
     {
-        public static void Set(this DropDownList ddl, string findByVal)
-        { // attempts to set a DDL to the 'findByVal'
-            try { ddl.SelectedIndex = ddl.Items.IndexOf(ddl.Items.FindByValue(findByVal)); }
+        public static void Set(this ListControl lc, string findByVal)
+        { // attempts to set a ListControl (ddl, listbox, etc.) to the 'findByVal'
+            try { lc.SelectedIndex = lc.Items.IndexOf(lc.Items.FindByValue(findByVal)); }
             catch { };
         }
 

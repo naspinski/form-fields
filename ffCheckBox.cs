@@ -15,10 +15,12 @@ namespace Naspinski.Controls.FormFields
         public CheckBox CheckBox;
         [Category("Behavior"), Description("Changing the value will cause postback"), DefaultValue("False")]
         public bool AutoPostBack { get; set; }
+        [Category("Appearance"), DefaultValue("False")]
+        public bool Checked { get; internal set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckBox = new CheckBox() { ID = "chk", AutoPostBack = AutoPostBack };
+            CheckBox = new CheckBox() { ID = "chk", CssClass = FormElementCssClass, AutoPostBack = AutoPostBack, Checked = this.Checked };
             this.FieldInit(CheckBox);
         }
     }

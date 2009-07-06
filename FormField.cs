@@ -1,8 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.ComponentModel;
+using System.Configuration;
 
 namespace Naspinski.Controls.FormFields
 {
@@ -29,7 +30,7 @@ namespace Naspinski.Controls.FormFields
         public PlaceHolder ValidationPlaceHolder;
 
         private Type[] TYPES_THAT_DONT_VALIDATE = new Type[] { typeof(CheckBox), typeof(CheckBoxList), typeof(RadioButton), typeof(RadioButtonList) };
-        private Type[] TYPES_THAT_DONT_LIKE_INITIAL_VALUE = new Type[] { typeof(ListBox) };
+        private Type[] TYPES_THAT_DONT_LIKE_INITIAL_VALUE = new Type[] { typeof(ListBox), typeof(TextBox) };
 
         public void FieldInit(Control c)
         {
@@ -74,6 +75,7 @@ namespace Naspinski.Controls.FormFields
             if (string.IsNullOrEmpty(RequiredErrorMessage)) RequiredErrorMessage = Settings.RequiredErrorMessage;
             if (string.IsNullOrEmpty(FieldCssClass)) FieldCssClass = Settings.FieldCssClass;
             if (string.IsNullOrEmpty(ValidatorCssClass)) ValidatorCssClass = Settings.ValidatorCssClass;
+            if (string.IsNullOrEmpty(FormElementCssClass)) FormElementCssClass = Settings.FormElementCssClass;
         }
     }
 }

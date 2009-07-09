@@ -20,8 +20,9 @@ namespace Naspinski.Controls.FormFields
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            CheckBox = new CheckBox() { ID = "chk", CssClass = FormElementCssClass, AutoPostBack = AutoPostBack, Checked = this.Checked };
+            CheckBox = new CheckBox() { ID = "chk", AutoPostBack = AutoPostBack, Checked = this.Checked };
             this.FieldInit(CheckBox);
+            CheckBox.CssClass = FormElementCssClass;
         }
     }
 }

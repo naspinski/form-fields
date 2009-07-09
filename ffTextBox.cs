@@ -35,7 +35,14 @@ namespace Naspinski.Controls.FormFields
         public MaskedEditInputDirection InputDirection { get; set; }
         [Category("Behavior"), Description("Specifies the mask type to use in conjunciton with the Mask")]
         public MaskedEditShowSymbol DisplayMoney { get; set; }
+        [Category("Appearance"), Description("Css Class for the Mask"), DefaultValue("")]
+        public string WatermarkCssClass { get; set; }
+        [Category("Appearance"), Description("Text for the watermark"), DefaultValue("")]
+        public string WatermarkText { get; set; } 
+        
         private int regCount = 0;
+        private bool mask_made = false;
+        private bool watermark_made = false;
 
         public MaskedEditExtender MaskedEditExtender;
         public CalendarExtender CalendarExtender;
@@ -45,9 +52,10 @@ namespace Naspinski.Controls.FormFields
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            TextBox = new TextBox() { ID = "txt", CssClass = FormElementCssClass, Text = Text };
-            if (string.IsNullOrEmpty(ErrorMessage)) ErrorMessage = "error";
+            TextBox = new TextBox() { ID = "txt", Text = Text };
+            SetTextBoxDefaults();
             this.FieldInit(TextBox);
+            TextBox.CssClass = FormElementCssClass;
 
             TextBox.TextMode = TextMode;
             switch (TextMode)
@@ -58,7 +66,6 @@ namespace Naspinski.Controls.FormFields
             }
 
             if (!string.IsNullOrEmpty(RegEx)) { AddRegExValidator(); }
-            bool mask_made = false;
 
             if (!string.IsNullOrEmpty(Type.ToString()))
             {
@@ -71,7 +78,6 @@ namespace Naspinski.Controls.FormFields
                         if (string.IsNullOrEmpty(Mask)) Mask = "999,999,999,999.99";
                         MakeMask();
                         ValidationPlaceHolder.Controls.Add(MaskedEditExtender);
-                        mask_made = true;
                         break;
 
                     case Types.Date:
@@ -79,7 +85,6 @@ namespace Naspinski.Controls.FormFields
                         MaskType = MaskedEditType.Date;
                         MakeMask();
                         ValidationPlaceHolder.Controls.Add(MaskedEditExtender);
-                        mask_made = true;
                         CalendarExtender = new CalendarExtender()
                         {
                             TargetControlID = TextBox.ID,
@@ -88,13 +93,11 @@ namespace Naspinski.Controls.FormFields
                             ID = "cal"
                         };
                         ValidationPlaceHolder.Controls.Add(CalendarExtender);
-                        TextBoxWatermarkExtender = new TextBoxWatermarkExtender()
-                        {
-                            TargetControlID = TextBox.ID,
-                            WatermarkText = "mm/dd/yyyy",
-                            ID = "twe"
-                        };
+
+                        WatermarkText = "MM/dd/yyyy";
+                        MakeWatermark();
                         ValidationPlaceHolder.Controls.Add(TextBoxWatermarkExtender);
+
                         if (ErrorMessage.Equals("error")) ErrorMessage = "invalid date";
                         CompareValidator = new CompareValidator()
                         {
@@ -116,7 +119,6 @@ namespace Naspinski.Controls.FormFields
                         Mask = "999-99-9999";
                         MakeMask();
                         ValidationPlaceHolder.Controls.Add(MaskedEditExtender);
-                        mask_made = true;
                         break;
 
                     case Types.Integer:
@@ -149,6 +151,11 @@ namespace Naspinski.Controls.FormFields
                 MakeMask();
                 ValidationPlaceHolder.Controls.Add(MaskedEditExtender);
             }
+            if (!watermark_made && !string.IsNullOrEmpty(WatermarkText))
+            {
+                MakeWatermark();
+                ValidationPlaceHolder.Controls.Add(TextBoxWatermarkExtender);
+            }
         }
 
         private void AddRegExValidator()
@@ -165,9 +172,10 @@ namespace Naspinski.Controls.FormFields
             ValidationPlaceHolder.Controls.Add(RegularExpressionValidator);
         }
 
-        private void SetDefaults()
+        private void SetTextBoxDefaults()
         {
             if (string.IsNullOrEmpty(ErrorMessage)) ErrorMessage = "error";
+            if (string.IsNullOrEmpty(WatermarkCssClass)) WatermarkCssClass = Settings.WatermarkCssClass;
         }
 
         private void MakeMask()
@@ -177,8 +185,21 @@ namespace Naspinski.Controls.FormFields
                 Mask = this.Mask,
                 MaskType = this.MaskType,
                 TargetControlID = TextBox.ID,
-                ID = "mee"
+                ID = "mee",
             };
+            watermark_made = true;
+        }
+
+        private void MakeWatermark()
+        {
+            TextBoxWatermarkExtender = new TextBoxWatermarkExtender()
+            {
+                TargetControlID = TextBox.ID,
+                WatermarkCssClass = WatermarkCssClass,
+                WatermarkText = WatermarkText,
+                ID = "twe"
+            };
+            mask_made = true;
         }
     }
 }

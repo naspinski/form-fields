@@ -16,7 +16,7 @@ namespace Naspinski.Controls.FormFields
         [Category("Behavior"), Description("Changing the value will cause postback"), DefaultValue("False")]
         public bool AutoPostBack { get; set; }
         [Category("Appearance"), DefaultValue("False")]
-        public bool Checked { get; internal set; }
+        public bool Checked { internal get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

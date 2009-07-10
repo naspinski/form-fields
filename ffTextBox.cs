@@ -41,8 +41,7 @@ namespace Naspinski.Controls.FormFields
         public string WatermarkText { get; set; } 
         
         private int regCount = 0;
-        private bool mask_made = false;
-        private bool watermark_made = false;
+        private bool mask_made, watermark_made;
 
         public MaskedEditExtender MaskedEditExtender;
         public CalendarExtender CalendarExtender;
@@ -176,6 +175,8 @@ namespace Naspinski.Controls.FormFields
         {
             if (string.IsNullOrEmpty(ErrorMessage)) ErrorMessage = "error";
             if (string.IsNullOrEmpty(WatermarkCssClass)) WatermarkCssClass = Settings.WatermarkCssClass;
+            mask_made = false;
+            watermark_made = false;
         }
 
         private void MakeMask()
@@ -185,7 +186,7 @@ namespace Naspinski.Controls.FormFields
                 Mask = this.Mask,
                 MaskType = this.MaskType,
                 TargetControlID = TextBox.ID,
-                ID = "mee",
+                ID = "mee" + regCount++.ToString(),
             };
             watermark_made = true;
         }

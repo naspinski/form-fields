@@ -53,14 +53,25 @@ namespace Naspinski.Controls.FormFields
                 throw new Exception("No L2STableName declared");
             else if (string.IsNullOrEmpty(L2SDataContextName) && !string.IsNullOrEmpty(L2STableName) && string.IsNullOrEmpty(Settings.DataContext))
                 throw new Exception("No L2SDataContext declared");
-            if (string.IsNullOrEmpty(L2SDataContextName)) L2SDataContextName = Settings.DataContext;
+
+
+
             if (string.IsNullOrEmpty(DataTextField)) DataTextField = Settings.DataTextField;
-            else if (!string.IsNullOrEmpty(L2STableName))
+            if (!string.IsNullOrEmpty(Settings.TextSuffix) && string.IsNullOrEmpty(DataTextField) && !string.IsNullOrEmpty(L2STableName))
+                DataTextField = L2STableName + Settings.TextSuffix;
+            C.DataTextField = DataTextField;
+
+            if (string.IsNullOrEmpty(L2SDataContextName)) L2SDataContextName = Settings.DataContext;
+            if (!string.IsNullOrEmpty(L2STableName))
             {
+                if (string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = Settings.OrderBy;
+                if (!string.IsNullOrEmpty(Settings.OrderSuffix) && string.IsNullOrEmpty(L2SOrderByColumn) && !string.IsNullOrEmpty(L2STableName))
+                    L2SOrderByColumn = L2STableName + Settings.OrderSuffix;
+
                 if (!string.IsNullOrEmpty(DataTextField) && string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = DataTextField;
                 if (string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = Settings.OrderBy;
             }
-            C.DataTextField = DataTextField;
+
             if (!string.IsNullOrEmpty(DataSourceID)) C.DataSourceID = DataSourceID;
             if (string.IsNullOrEmpty(DataValueField)) DataValueField = Settings.DataValueField;
             if (!string.IsNullOrEmpty(Settings.ValueSuffix) && string.IsNullOrEmpty(DataValueField) && !string.IsNullOrEmpty(L2STableName))

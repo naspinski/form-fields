@@ -12,6 +12,8 @@ public class Settings
     public static string FormElementCssClass { get { return ConfigurationSettings.AppSettings["FormElementCssClass"]; } }
     public static string WatermarkCssClass { get { return ConfigurationSettings.AppSettings["WatermarkCssClass"]; } }
     public static string ValueSuffix { get { return ConfigurationSettings.AppSettings["ValueSuffix"]; } }
+    public static string TextSuffix { get { return ConfigurationSettings.AppSettings["TextSuffix"]; } }
+    public static string OrderSuffix { get { return ConfigurationSettings.AppSettings["OrderSuffix"]; } }
     public static string DataValueField { get { return ConfigurationSettings.AppSettings["DataValueField"]; } }
     public static string DataTextField { get { return ConfigurationSettings.AppSettings["DataTextField"]; } }
     public static string OrderBy { get { return ConfigurationSettings.AppSettings["OrderBy"]; } }

@@ -65,11 +65,10 @@ namespace Naspinski.Controls.FormFields
             if (!string.IsNullOrEmpty(L2STableName))
             {
                 if (string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = Settings.OrderBy;
-                if (!string.IsNullOrEmpty(Settings.OrderSuffix) && string.IsNullOrEmpty(L2SOrderByColumn) && !string.IsNullOrEmpty(L2STableName))
+                if (!string.IsNullOrEmpty(Settings.OrderSuffix) && string.IsNullOrEmpty(L2SOrderByColumn))
                     L2SOrderByColumn = L2STableName + Settings.OrderSuffix;
 
                 if (!string.IsNullOrEmpty(DataTextField) && string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = DataTextField;
-                if (string.IsNullOrEmpty(L2SOrderByColumn)) L2SOrderByColumn = Settings.OrderBy;
             }
 
             if (!string.IsNullOrEmpty(DataSourceID)) C.DataSourceID = DataSourceID;

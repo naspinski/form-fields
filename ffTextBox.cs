@@ -29,11 +29,11 @@ namespace Naspinski.Controls.FormFields
         public string ErrorMessage { get; set; }
         [Category("Behavior"), Description("Specifies the mask to put on the textbox"), DefaultValue("")]
         public string Mask { get; set; }
-        [Category("Behavior"), Description("Specifies the mask type to use in conjunciton with the Mask")]
+        [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
         public MaskedEditType MaskType { get; set; }
-        [Category("Behavior"), Description("Specifies the mask type to use in conjunciton with the Mask")]
+        [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
         public MaskedEditInputDirection InputDirection { get; set; }
-        [Category("Behavior"), Description("Specifies the mask type to use in conjunciton with the Mask")]
+        [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
         public MaskedEditShowSymbol DisplayMoney { get; set; }
         [Category("Appearance"), Description("Css Class for the Mask"), DefaultValue("")]
         public string WatermarkCssClass { get; set; }

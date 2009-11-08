@@ -29,11 +29,11 @@ namespace Naspinski.Controls.FormFields
         public string ErrorMessage { get; set; }
         [Category("Behavior"), Description("Specifies the mask to put on the textbox"), DefaultValue("")]
         public string Mask { get; set; }
-        [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
+        [Category("Behavior"), Description("Specifies the mask")]
         public MaskedEditType MaskType { get; set; }
         [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
         public MaskedEditInputDirection InputDirection { get; set; }
-        [Category("Behavior"), Description("Specifies the mask type to use in conjunction with the Mask")]
+        [Category("Behavior"), Description("Specifies masked input direction")]
         public MaskedEditShowSymbol DisplayMoney { get; set; }
         [Category("Appearance"), Description("Css Class for the Mask"), DefaultValue("")]
         public string WatermarkCssClass { get; set; }
@@ -122,7 +122,7 @@ namespace Naspinski.Controls.FormFields
 
                     case Types.Integer:
                         if (ErrorMessage.Equals("error")) ErrorMessage = "integers only";
-                        RegEx = @"^[0-9]+$";
+                        RegEx = @"^-?[0-9]+$";
                         AddRegExValidator();
                         break;
 

@@ -10,3 +10,9 @@ C:\Documents and Settings\stan.naspinski\Desktop\formFields\formFields\bin\Debug
 C:\Documents and Settings\stan.naspinski\Desktop\formFields\formFields\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\stan.naspinski\Desktop\formFields\formFields\obj\Debug\FormFields.dll
 C:\Documents and Settings\stan.naspinski\Desktop\formFields\formFields\obj\Debug\FormFields.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\bin\Debug\FormFields.dll
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\bin\Debug\FormFields.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\bin\Debug\AjaxControlToolkit.dll
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\obj\Debug\FormFields.dll
+C:\Documents and Settings\stan.naspinski\Desktop\FormFields\obj\Debug\FormFields.pdb

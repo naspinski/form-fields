@@ -185,6 +185,8 @@ namespace Naspinski.Controls.FormFields
             {
                 Mask = this.Mask,
                 MaskType = this.MaskType,
+                InputDirection = this.InputDirection,
+                DisplayMoney = this.DisplayMoney,
                 TargetControlID = TextBox.ID,
                 ID = "mee" + regCount++.ToString(),
             };

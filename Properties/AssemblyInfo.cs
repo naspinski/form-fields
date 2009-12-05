@@ -11,7 +11,7 @@ using System.Web.UI;
 [assembly: AssemblyTitle("Naspinski.Controls.FormFields")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Naspinski")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Naspinski.Controls.FormFields")]
 [assembly: AssemblyCopyright("Copyright © Stan Naspinski 2009")]
 [assembly: AssemblyTrademark("")]
